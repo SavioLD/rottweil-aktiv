@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jobbörse – Rottweil aktiv</title>
+<meta name="description" content="Die Jobbörse von Rottweil aktiv: Offene Stellen der Mitglieder des Gewerbe- und Handelsvereins Rottweil e.V. Jetzt Stelle finden oder als Mitglied inserieren." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="assets/logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a href="index.html" class="brand" aria-label="Rottweil aktiv – Startseite">
+      <img src="assets/logo.svg" alt="Rottweil aktiv Logo" />
+    </a>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="aktuelles.html">Aktuelles</a>
+      <a href="jobboerse.html" class="is-active">Jobbörse</a>
+      <a href="ueber-uns.html">Über Uns</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="#inserieren" class="btn btn--gold nav__cta">Stelle inserieren</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== PAGE HERO ===================== -->
+<section class="page-hero">
+  <span class="dots dots--a"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  <span class="dots dots--b"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  <div class="shell">
+    <h1>Jobbörse</h1>
+    <p>Offene Stellen direkt aus Rottweil. Hier platzieren alle Mitglieder des Gewerbe- und Handelsvereins ihre Jobs – vom Handwerk über den Einzelhandel bis zur Gastronomie.</p>
+  </div>
+</section>
+
+<!-- ===================== JOB LISTING ===================== -->
+<section class="section">
+  <div class="shell">
+
+    <div class="job-toolbar">
+      <label class="job-search">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="jobSearch" placeholder="Job, Unternehmen oder Stichwort suchen …" aria-label="Jobsuche">
+      </label>
+      <div class="job-filters" id="jobFilters">
+        <button class="chip is-active" data-cat="alle">Alle</button>
+        <button class="chip" data-cat="Einzelhandel">Einzelhandel</button>
+        <button class="chip" data-cat="Gastronomie">Gastronomie</button>
+        <button class="chip" data-cat="Handwerk">Handwerk</button>
+        <button class="chip" data-cat="Dienstleistung">Dienstleistung</button>
+        <button class="chip" data-cat="Ausbildung">Ausbildung</button>
+      </div>
+    </div>
+
+    <div class="jobs" id="jobList"><!-- gefüllt per JS --></div>
+  </div>
+</section>
+
+<!-- ===================== MITGLIEDER INSERIEREN ===================== -->
+<section class="section section--soft" id="inserieren">
+  <div class="shell">
+    <div class="section__head heading--center">
+      <p class="kicker">Für GHV-Mitglieder</p>
+      <h2 class="heading heading--center">Offene Stelle <span class="accent">inserieren</span></h2>
+      <p style="text-align:center;max-width:60ch;margin:14px auto 0;color:var(--ink)">
+        Sie sind Mitglied im Gewerbe- und Handelsverein Rottweil e.V.? Dann veröffentlichen Sie Ihre offene Stelle
+        kostenlos in der Jobbörse. Füllen Sie das Formular aus – wir schalten Ihr Inserat zeitnah frei.
+      </p>
+    </div>
+
+    <div class="notice" id="formNotice">Vielen Dank! Ihre Anfrage wurde vorbereitet – bitte senden Sie die geöffnete E-Mail ab.</div>
+
+    <form class="form-grid" id="jobForm" novalidate>
+      <div class="field">
+        <label for="f-company">Unternehmen *</label>
+        <input id="f-company" name="company" required placeholder="z. B. Modehaus Müller">
+      </div>
+      <div class="field">
+        <label for="f-contact">Ansprechpartner:in *</label>
+        <input id="f-contact" name="contact" required placeholder="Vor- und Nachname">
+      </div>
+      <div class="field">
+        <label for="f-email">E-Mail *</label>
+        <input id="f-email" type="email" name="email" required placeholder="kontakt@firma.de">
+      </div>
+      <div class="field">
+        <label for="f-title">Stellenbezeichnung *</label>
+        <input id="f-title" name="title" required placeholder="z. B. Verkäufer:in (m/w/d)">
+      </div>
+      <div class="field">
+        <label for="f-cat">Branche *</label>
+        <select id="f-cat" name="category" required>
+          <option value="">Bitte wählen …</option>
+          <option>Einzelhandel</option>
+          <option>Gastronomie</option>
+          <option>Handwerk</option>
+          <option>Dienstleistung</option>
+          <option>Ausbildung</option>
+          <option>Sonstiges</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-type">Beschäftigungsart *</label>
+        <select id="f-type" name="type" required>
+          <option value="">Bitte wählen …</option>
+          <option>Vollzeit</option>
+          <option>Teilzeit</option>
+          <option>Minijob</option>
+          <option>Ausbildung</option>
+          <option>Praktikum</option>
+          <option>Aushilfe</option>
+        </select>
+      </div>
+      <div class="field field--full">
+        <label for="f-desc">Beschreibung der Stelle *</label>
+        <textarea id="f-desc" name="description" required placeholder="Aufgaben, Anforderungen, Eintrittstermin, Kontakt für Bewerbungen …"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn--navy">Stelle einreichen</button>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:12px">
+          Mit dem Absenden werden Ihre Angaben per E-Mail an den GHV Rottweil übermittelt.
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__brand">
+      <img src="assets/logo.svg" alt="Rottweil aktiv Logo" />
+      <span>Rottweil aktiv</span>
+    </div>
+    <div class="footer__links">
+      <a href="datenschutz.html">Datenschutzerklärung</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="satzung.html">Satzung</a>
+    </div>
+  </div>
+  <div class="footer__bar">
+    <div class="shell footer__bar-inner">
+      <span>© <span data-year>2026</span> Gewerbe- und Handelsverein Rottweil e.V. &nbsp;•&nbsp; Powered by <a href="https://www.laendle-digital.com" target="_blank" rel="noopener">Ländle Digital</a></span>
+      <a href="https://www.instagram.com/" class="footer__social" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/jobs.js"></script>
+</body>
+</html>
