@@ -1,17 +1,18 @@
-# Team-Bilder – Vorstand & Ausschuss
+# Bilder – Rottweil aktiv
 
-Porträts hier ablegen. Dateinamen müssen den Pfaden in `js/team.js` entsprechen:
+Finale Bilder hier ablegen. Erwartete Dateinamen (mit automatischem Fallback,
+falls noch nicht vorhanden):
 
-| Datei                  | Person                       |
-|------------------------|------------------------------|
-| tobias-ruetzel.jpg     | Tobias Rützel (1. Vorstand)  |
-| marcus-frank.jpg       | Marcus Frank (2. Vorstand)   |
-| ralf-graner.jpg        | Ralf Graner                  |
-| savio-roeckle.jpg      | Savio Röckle                 |
-| thomas-makosch.jpg     | Thomas Makosch               |
-| monica-ribeiro.jpg     | Monica Ribeiro               |
+| Datei                | Verwendung                              | Empf. Format / Größe       |
+|----------------------|-----------------------------------------|----------------------------|
+| hero-rottweil.jpg    | Startseite – Hero (Altstadt)            | Querformat, ≥ 1400×1000 px |
+| ueber-uns.jpg        | Startseite – „Wer steckt hinter…"       | Querformat, ≥ 1200×900 px  |
+| social-media.jpg     | News-Karte „Gesichter der Stadt"        | Querformat, ≥ 800×500 px   |
+| rottweilcard.jpg     | News-Karte „RottweilCard"               | Querformat, ≥ 800×500 px   |
+| mitglied-werden.jpg  | Über uns – „Jetzt Mitglied werden"      | Hochformat, ≥ 900×1100 px  |
+| team/*.jpg           | Vorstand & Ausschuss (siehe team/README)| Porträt, ≥ 500×550 px      |
 
-Empfehlung: möglichst quadratisch/Hochformat, ≥ 500×550 px.
-Fehlt ein Foto, zeigt die Seite automatisch die Initialen als Platzhalter.
+Außerdem: `assets/anmeldeformular.pdf` für den Button „Anmeldeformular" (Über uns).
 
-Weitere Personen: einfach Objekt in `js/team.js` ergänzen und Foto hier ablegen.
+Fehlt ein Bild, blendet die Seite den Platzhalter sauber aus bzw. zeigt bei
+Team-Fotos die Initialen. Einfach Datei mit passendem Namen einfügen.
