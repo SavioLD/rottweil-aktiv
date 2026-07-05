@@ -96,13 +96,12 @@ button{font-family:inherit;cursor:pointer}
 /* ---------- Decorative bits ---------- */
 .dots{display:grid;grid-template-columns:repeat(4,8px);gap:7px;width:max-content}
 .dots i{width:8px;height:8px;border-radius:50%;background:var(--red);display:block}
-.tri{width:0;height:0;border-left:34px solid transparent;border-right:34px solid transparent;border-top:54px solid transparent;position:relative}
-.tri::before{content:"";position:absolute;inset:-54px -34px 0;border-left:34px solid transparent;border-right:34px solid transparent;border-top:54px solid var(--gold)}
-.square{width:42px;height:42px;background:var(--purple);border-radius:10px;transform:rotate(8deg);box-shadow:var(--shadow-sm)}
+.tri{width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:34px solid var(--gold)}
+.square{width:40px;height:40px;background:var(--purple);border-radius:10px;transform:rotate(8deg);box-shadow:var(--shadow-sm)}
 
 /* ---------- Hero ---------- */
-.hero{position:relative;padding:54px 0 40px}
-.hero__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:30px;align-items:center}
+.hero{position:relative;padding:54px 0 66px}
+.hero__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:30px;align-items:center;position:relative}
 .hero__card{
   background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
   padding:48px 44px;position:relative;z-index:2;
@@ -112,9 +111,9 @@ button{font-family:inherit;cursor:pointer}
 .hero__media{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:420px;
   background:linear-gradient(135deg,#cfe0f5,#a9c6ec);}
 .hero__media img{width:100%;height:100%;object-fit:cover;min-height:420px}
-.hero .dots{position:absolute;left:8px;bottom:38px;z-index:1}
-.hero .square{position:absolute;left:130px;bottom:18px;z-index:1}
-.hero .tri{position:absolute;left:36px;bottom:-30px;z-index:1}
+/* Hero-Deko: Cluster unten links unter der Karte – überlappt keinen Text */
+.hero__deco{position:absolute;left:2px;bottom:-28px;display:flex;align-items:center;gap:20px;z-index:1}
+.hero__deco .dots,.hero__deco .square,.hero__deco .tri{position:static;flex:none}
 
 /* ---------- Section heading ---------- */
 .section{padding:64px 0}
@@ -354,8 +353,8 @@ button{font-family:inherit;cursor:pointer}
   .contact-icons{grid-template-columns:1fr;gap:40px;margin-top:56px}
   .cicon{padding:26px 18px}
 }
-@media (max-width:680px){
-  body{font-size:16px}
+/* Navigation klappt schon früher ins Mobile-Menü, damit nichts abgeschnitten wird */
+@media (max-width:900px){
   .nav{
     position:fixed;inset:78px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
     background:#fff;border-bottom:1px solid var(--line);padding:8px 0;
@@ -364,10 +363,13 @@ button{font-family:inherit;cursor:pointer}
   .nav.is-open{transform:translateY(0)}
   .nav a{padding:14px 24px;border-bottom:1px solid var(--line)}
   .nav a.is-active::after{display:none}
-  .nav__cta{margin:12px 24px}
+  .nav__cta{margin:12px 24px;text-align:center}
   .nav-toggle{display:flex}
+}
+@media (max-width:680px){
+  body{font-size:16px}
   .cards{grid-template-columns:1fr}
-  .hero .square,.hero .tri,.hero .dots{display:none}
+  .hero__deco{display:none}
   .section{padding:48px 0}
   .cta-box{padding:40px 22px}
   .footer{padding-top:80px}
