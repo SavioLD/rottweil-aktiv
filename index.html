@@ -103,7 +103,7 @@ button{font-family:inherit;cursor:pointer}
 .square{width:40px;height:40px;background:var(--purple);border-radius:10px;transform:rotate(8deg);box-shadow:var(--shadow-sm)}
 
 /* ---------- Hero ---------- */
-.hero{position:relative;padding:54px 0 66px}
+.hero{position:relative;padding:54px 0 44px}
 .hero__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:30px;align-items:center;position:relative}
 .hero__card{
   background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
@@ -302,6 +302,7 @@ button{font-family:inherit;cursor:pointer}
 .values{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:14px}
 .value{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:26px 22px;box-shadow:var(--shadow-sm)}
 .value .em{font-size:1.8rem;display:block;margin-bottom:8px}
+.value__bar{display:block;width:44px;height:4px;border-radius:4px;margin:0 auto 14px;background:linear-gradient(90deg,var(--pink),var(--gold))}
 .value h4{margin-bottom:6px}
 .value p{margin:0;font-size:.96rem;color:var(--ink)}
 
@@ -335,6 +336,45 @@ button{font-family:inherit;cursor:pointer}
 .notice{display:none;margin:18px auto 0;max-width:760px;padding:14px 18px;border-radius:12px;
   background:#e7f7ec;color:#1c7a3e;border:1px solid #b6e3c4;font-weight:600;text-align:center}
 .notice.is-on{display:block}
+
+/* ============================================================
+   Einheitlich ZENTRIERT (Web + Mobil)
+   ============================================================ */
+/* Hero */
+.hero__card{text-align:center}
+.hero__lead{max-width:46ch;margin-left:auto;margin-right:auto}
+.hero__deco{position:static;justify-content:center;margin-top:26px}
+
+/* Startseite „Wer steckt hinter" */
+.about{text-align:center}
+
+/* News-Karten */
+.ncard__body{text-align:center}
+.ncard__rule{margin-left:auto;margin-right:auto}
+
+/* Über uns – Intro/Werte + Mitglied werden */
+.prose{text-align:center}
+.value{text-align:center}
+.join{text-align:center}
+.join__title .accent{display:block}
+
+/* Kontakt */
+.contact-info{text-align:center}
+.contact-lines li{justify-content:center}
+.cform{text-align:center}
+.field label{text-align:center}
+
+/* Jobbörse – Karten & Toolbar */
+.job-toolbar{justify-content:center}
+.job-filters{justify-content:center}
+.jcard{text-align:center}
+.jcard__top{flex-direction:column-reverse;align-items:center;gap:10px}
+.jcard__tags{justify-content:center}
+.jcard__desc{text-align:center}
+.jcard__foot{justify-content:center;gap:20px}
+
+/* Footer-Leiste zentriert */
+.footer__bar-inner{justify-content:center;text-align:center;flex-wrap:wrap}
 
 /* ---------- Mobile ---------- */
 @media (max-width:960px){
@@ -372,7 +412,7 @@ button{font-family:inherit;cursor:pointer}
 @media (max-width:680px){
   body{font-size:16px}
   .cards{grid-template-columns:1fr}
-  .hero__deco{display:none}
+  .cform .row{grid-template-columns:1fr}
   .section{padding:48px 0}
   .cta-box{padding:40px 22px}
   .footer{padding-top:80px}
@@ -507,7 +547,7 @@ button{font-family:inherit;cursor:pointer}
   </div>
   <div class="footer__bar">
     <div class="shell footer__bar-inner">
-      <span>© <span data-year>2026</span> Gewerbe- und Handelsverein Rottweil e.V. &nbsp;•&nbsp; Powered by <a href="https://www.laendle-digital.com" target="_blank" rel="noopener">Ländle Digital</a></span>
+      <span>© <span data-year>2026</span> Gewerbe- und Handelsverein Rottweil e.V. &nbsp;•&nbsp; Powered by <a href="https://sebastian-hepp.com" target="_blank" rel="noopener">Sebastian Hepp Software &amp; AI</a></span>
       <a href="https://www.instagram.com/" class="footer__social" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
       </a>
