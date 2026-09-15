@@ -238,6 +238,22 @@ button{font-family:inherit;cursor:pointer}
 .jcard__loc{font-size:.88rem;color:var(--muted);display:flex;align-items:center;gap:6px}
 .jobs-empty{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1}
 
+/* Jobbörse: Firmen-Übersicht + Detail */
+.companies{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ccard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:32px 22px;
+  box-shadow:var(--shadow-sm);cursor:pointer;font:inherit;transition:.2s}
+.ccard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#c9d2ee}
+.ccard__logo{width:66px;height:66px;border-radius:16px;display:grid;place-items:center;margin-bottom:4px;
+  background:var(--bg-soft);color:var(--blue);font-weight:800;font-size:1.4rem;border:1px solid var(--line)}
+.ccard__name{font-weight:700;color:var(--navy);font-size:1.15rem;line-height:1.25}
+.ccard__count{color:var(--muted);font-size:.95rem}
+.ccard__go{margin-top:6px;color:var(--blue);font-weight:600;font-size:.92rem}
+.jobs-back{margin-bottom:14px;text-align:center}
+.backlink{background:none;border:0;color:var(--blue);font-weight:600;font:inherit;cursor:pointer;padding:6px 2px}
+.backlink:hover{color:var(--gold-deep)}
+.jobs-company-head{text-align:center;text-transform:uppercase;margin:0 0 26px;color:var(--blue)}
+
 /* member submit box */
 .submit-box{background:var(--bg-soft);border:1.5px dashed #c9d2ee;border-radius:var(--radius);
   padding:40px 34px;margin-top:54px;text-align:center}
@@ -393,6 +409,7 @@ button{font-family:inherit;cursor:pointer}
   .about{grid-template-columns:1fr;gap:30px}
   .about__media{min-height:280px;order:-1}
   .jobs{grid-template-columns:1fr}
+  .companies{grid-template-columns:repeat(2,1fr)}
   .contact-grid{grid-template-columns:1fr;gap:30px}
   .values{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
@@ -419,6 +436,7 @@ button{font-family:inherit;cursor:pointer}
 @media (max-width:680px){
   body{font-size:16px}
   .cards{grid-template-columns:1fr}
+  .companies{grid-template-columns:1fr}
   .cform .row{grid-template-columns:1fr}
   .section{padding:48px 0}
   .cta-box{padding:40px 22px}
@@ -599,7 +617,8 @@ button{font-family:inherit;cursor:pointer}
 <script>
 /* =====================================================================
    Jobbörse – Rottweil aktiv
-   Stellen der GHV-Mitglieder. Neue Inserate einfach hier ergänzen.
+   Ansicht 1: Unternehmen als Kacheln.  Klick → Ansicht 2: Stellen der Firma.
+   Neue Stelle: einfach unten im JOBS-Array ergänzen (company = Firmenname).
    ===================================================================== */
 
 const JOBS = [
@@ -646,6 +665,24 @@ const JOBS = [
     location: 'Zimmern o.R.',
     desc: 'Ganzheitliche Beratung vermögender Privatkunden im Kredit- und Wertpapierbereich, Leitung der Geschäftsstelle in Zimmern sowie regionale Netzwerkpflege. Für Bewerber:innen mit langjähriger Erfahrung in der Privatkundenbetreuung – bei einer TOP-Genossenschaftsbank, inkl. mobilem Arbeiten.',
     date: '2026-08-13'
+  },
+  {
+    company: 'Intersport Kirsner',
+    title: 'Ausbildung Einzelhandelskaufmann/-frau (m/w/d)',
+    category: 'Ausbildung', type: 'Ausbildung',
+    location: 'Rottweil',
+    desc: 'Ausbildung im Sportfachhandel für sportbegeisterte Schulabgänger:innen: Beratung, Verkauf und ansprechende Warenpräsentation in einem jungen, dynamischen Team – mit strukturiertem Ausbildungsplan. Bewirb dich und schreib uns, welcher dein Lieblingssport ist!',
+    url: 'mailto:dorothee@kirsner-sport.de?subject=Bewerbung Ausbildung Einzelhandelskaufmann/-frau (m/w/d)',
+    date: '2026-09-15'
+  },
+  {
+    company: 'Intersport Kirsner',
+    title: 'Verkäufer/in (m/w/d) – Sporttextilien',
+    category: 'Einzelhandel', type: 'Vollzeit',
+    location: 'Rottweil',
+    desc: 'Fachkundige Beratung und aktiver Verkauf im Bereich Sporttextilien (Outdoor, Ski, Fitness), Aufbau attraktiver Warenpräsentationen und Mitgestaltung eines positiven Einkaufserlebnisses – in einem eingespielten Team, ohne Verkaufsdruck durch Provisionen.',
+    url: 'mailto:m.frank@kirsner-sport.de?subject=Bewerbung Verkäufer/in (m/w/d) Sporttextilien',
+    date: '2026-09-15'
   }
 ];
 
@@ -657,100 +694,129 @@ const JOBS = [
 
   let activeCat = 'alle';
 
-  function fmtDate(iso) {
-    try {
-      return new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
-    } catch (e) { return iso; }
-  }
-
-  function initials(name) {
-    return name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
-  }
-
-  function render() {
-    const q = (search.value || '').trim().toLowerCase();
-    const matches = JOBS.filter(function (j) {
-      const catOk = activeCat === 'alle' || j.category === activeCat;
-      const text = (j.title + ' ' + j.company + ' ' + j.desc + ' ' + j.location).toLowerCase();
-      const qOk = !q || text.indexOf(q) !== -1;
-      return catOk && qOk;
-    });
-
-    if (!matches.length) {
-      list.innerHTML = '<div class="jobs-empty">Aktuell keine passenden Stellen. Schau bald wieder vorbei – oder inseriere als Mitglied weiter unten.</div>';
-      return;
-    }
-
-    list.innerHTML = matches.map(function (j) {
-      return '' +
-        '<article class="jcard">' +
-          '<div class="jcard__top">' +
-            '<div><p class="jcard__company">' + esc(j.company) + '</p>' +
-            '<h3 class="jcard__title">' + esc(j.title) + '</h3></div>' +
-            '<div class="jcard__logo" aria-hidden="true">' + initials(j.company) + '</div>' +
-          '</div>' +
-          '<div class="jcard__tags">' +
-            '<span class="tag tag--type">' + esc(j.type) + '</span>' +
-            '<span class="tag tag--cat">' + esc(j.category) + '</span>' +
-          '</div>' +
-          '<p class="jcard__desc">' + esc(j.desc) + '</p>' +
-          (j.url ? '<a class="jcard__link" href="' + esc(j.url) + '" target="_blank" rel="noopener">Zur Stelle &amp; Bewerbung →</a>' : '') +
-          '<div class="jcard__foot">' +
-            '<span class="jcard__loc">' +
-              '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
-              esc(j.location) +
-            '</span>' +
-            '<span class="jcard__loc">' + fmtDate(j.date) + '</span>' +
-          '</div>' +
-        '</article>';
-    }).join('');
-  }
-
   function esc(s) {
-    return String(s).replace(/[&<>"]/g, function (c) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
     });
   }
+  function fmtDate(iso) {
+    try { return new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' }); }
+    catch (e) { return iso; }
+  }
+  function initials(name) {
+    return name.replace(/GmbH|Co\.?|KG|eG|&/gi, ' ').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  }
 
-  if (search) search.addEventListener('input', render);
+  // Firmen gruppieren (Reihenfolge des ersten Auftretens)
+  function grouped() {
+    const map = new Map();
+    JOBS.forEach(function (j) {
+      if (!map.has(j.company)) map.set(j.company, []);
+      map.get(j.company).push(j);
+    });
+    return map;
+  }
+
+  function jobCard(j) {
+    const isMail = j.url && j.url.indexOf('mailto:') === 0;
+    const label = isMail ? 'Per E-Mail bewerben →' : 'Zur Stelle &amp; Bewerbung →';
+    return '' +
+      '<article class="jcard">' +
+        '<div class="jcard__top">' +
+          '<div><p class="jcard__company">' + esc(j.company) + '</p>' +
+          '<h3 class="jcard__title">' + esc(j.title) + '</h3></div>' +
+          '<div class="jcard__logo" aria-hidden="true">' + initials(j.company) + '</div>' +
+        '</div>' +
+        '<div class="jcard__tags">' +
+          '<span class="tag tag--type">' + esc(j.type) + '</span>' +
+          '<span class="tag tag--cat">' + esc(j.category) + '</span>' +
+        '</div>' +
+        '<p class="jcard__desc">' + esc(j.desc) + '</p>' +
+        (j.url ? '<a class="jcard__link" href="' + esc(j.url) + '"' + (isMail ? '' : ' target="_blank" rel="noopener"') + '>' + label + '</a>' : '') +
+        '<div class="jcard__foot">' +
+          '<span class="jcard__loc">' +
+            '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+            esc(j.location) +
+          '</span>' +
+          '<span class="jcard__loc">' + fmtDate(j.date) + '</span>' +
+        '</div>' +
+      '</article>';
+  }
+
+  function renderCompanies() {
+    const q = (search && search.value || '').trim().toLowerCase();
+    const map = grouped();
+    const entries = [];
+    map.forEach(function (jobs, company) {
+      const jf = jobs.filter(function (j) { return activeCat === 'alle' || j.category === activeCat; });
+      if (!jf.length) return;
+      if (q) {
+        const text = (company + ' ' + jf.map(function (j) { return j.title + ' ' + j.desc + ' ' + j.location; }).join(' ')).toLowerCase();
+        if (text.indexOf(q) === -1) return;
+      }
+      entries.push([company, jf]);
+    });
+
+    list.className = '';
+    if (!entries.length) {
+      list.innerHTML = '<div class="jobs-empty">Aktuell keine passenden Unternehmen. Schau bald wieder vorbei – oder inseriere als Mitglied weiter unten.</div>';
+      return;
+    }
+    list.innerHTML = '<div class="companies">' + entries.map(function (e) {
+      const company = e[0], jf = e[1];
+      return '<button class="ccard" type="button" data-company="' + esc(company) + '">' +
+        '<span class="ccard__logo" aria-hidden="true">' + initials(company) + '</span>' +
+        '<span class="ccard__name">' + esc(company) + '</span>' +
+        '<span class="ccard__count">' + jf.length + ' offene ' + (jf.length === 1 ? 'Stelle' : 'Stellen') + '</span>' +
+        '<span class="ccard__go">Stellen ansehen →</span>' +
+      '</button>';
+    }).join('') + '</div>';
+  }
+
+  function renderCompany(company) {
+    const map = grouped();
+    const jobs = map.get(company);
+    if (!jobs) { location.hash = ''; return; }
+    list.className = '';
+    list.innerHTML =
+      '<div class="jobs-back"><button class="backlink" type="button">← Alle Unternehmen</button></div>' +
+      '<h2 class="jobs-company-head">' + esc(company) + '</h2>' +
+      '<div class="jobs">' + jobs.map(jobCard).join('') + '</div>';
+  }
+
+  function route() {
+    const h = location.hash || '';
+    const m = h.match(/^#u=(.+)$/);
+    if (m) {
+      var name;
+      try { name = decodeURIComponent(m[1]); } catch (e) { name = ''; }
+      if (grouped().has(name)) { renderCompany(name); window.scrollTo({ top: 0, behavior: 'auto' }); return; }
+    }
+    renderCompanies();
+  }
+
+  // Klick auf Firmen-Kachel bzw. Zurück-Link
+  list.addEventListener('click', function (e) {
+    const card = e.target.closest('.ccard');
+    if (card) { location.hash = '#u=' + encodeURIComponent(card.dataset.company); return; }
+    if (e.target.closest('.backlink')) { location.hash = ''; }
+  });
+
+  window.addEventListener('hashchange', route);
+
+  if (search) search.addEventListener('input', function () { if (location.hash) location.hash = ''; else renderCompanies(); });
   if (filters) {
     filters.addEventListener('click', function (e) {
       const btn = e.target.closest('.chip');
       if (!btn) return;
-      filters.querySelectorAll('.chip').forEach(c => c.classList.remove('is-active'));
+      filters.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('is-active'); });
       btn.classList.add('is-active');
       activeCat = btn.dataset.cat;
-      render();
+      if (location.hash) location.hash = ''; else renderCompanies();
     });
   }
 
-  render();
-
-  /* ---- Inserat-Formular: per mailto an den GHV ---- */
-  const form = document.getElementById('jobForm');
-  const notice = document.getElementById('formNotice');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      const d = new FormData(form);
-      const subject = 'Jobbörse-Inserat: ' + (d.get('title') || '') + ' – ' + (d.get('company') || '');
-      const body =
-        'Neues Stelleninserat für die Rottweil-aktiv-Jobbörse:\n\n' +
-        'Unternehmen: ' + d.get('company') + '\n' +
-        'Ansprechpartner:in: ' + d.get('contact') + '\n' +
-        'E-Mail: ' + d.get('email') + '\n' +
-        'Stellenbezeichnung: ' + d.get('title') + '\n' +
-        'Branche: ' + d.get('category') + '\n' +
-        'Beschäftigungsart: ' + d.get('type') + '\n\n' +
-        'Beschreibung:\n' + d.get('description') + '\n';
-      window.location.href = 'mailto:info@rottweil-aktiv.de'
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body=' + encodeURIComponent(body);
-      if (notice) notice.classList.add('is-on');
-      form.reset();
-    });
-  }
+  route();
 })();
 
 </script>

@@ -238,6 +238,22 @@ button{font-family:inherit;cursor:pointer}
 .jcard__loc{font-size:.88rem;color:var(--muted);display:flex;align-items:center;gap:6px}
 .jobs-empty{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1}
 
+/* Jobbörse: Firmen-Übersicht + Detail */
+.companies{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ccard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:32px 22px;
+  box-shadow:var(--shadow-sm);cursor:pointer;font:inherit;transition:.2s}
+.ccard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#c9d2ee}
+.ccard__logo{width:66px;height:66px;border-radius:16px;display:grid;place-items:center;margin-bottom:4px;
+  background:var(--bg-soft);color:var(--blue);font-weight:800;font-size:1.4rem;border:1px solid var(--line)}
+.ccard__name{font-weight:700;color:var(--navy);font-size:1.15rem;line-height:1.25}
+.ccard__count{color:var(--muted);font-size:.95rem}
+.ccard__go{margin-top:6px;color:var(--blue);font-weight:600;font-size:.92rem}
+.jobs-back{margin-bottom:14px;text-align:center}
+.backlink{background:none;border:0;color:var(--blue);font-weight:600;font:inherit;cursor:pointer;padding:6px 2px}
+.backlink:hover{color:var(--gold-deep)}
+.jobs-company-head{text-align:center;text-transform:uppercase;margin:0 0 26px;color:var(--blue)}
+
 /* member submit box */
 .submit-box{background:var(--bg-soft);border:1.5px dashed #c9d2ee;border-radius:var(--radius);
   padding:40px 34px;margin-top:54px;text-align:center}
@@ -393,6 +409,7 @@ button{font-family:inherit;cursor:pointer}
   .about{grid-template-columns:1fr;gap:30px}
   .about__media{min-height:280px;order:-1}
   .jobs{grid-template-columns:1fr}
+  .companies{grid-template-columns:repeat(2,1fr)}
   .contact-grid{grid-template-columns:1fr;gap:30px}
   .values{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
@@ -419,6 +436,7 @@ button{font-family:inherit;cursor:pointer}
 @media (max-width:680px){
   body{font-size:16px}
   .cards{grid-template-columns:1fr}
+  .companies{grid-template-columns:1fr}
   .cform .row{grid-template-columns:1fr}
   .section{padding:48px 0}
   .cta-box{padding:40px 22px}
