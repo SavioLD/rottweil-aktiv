@@ -488,6 +488,30 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
   .vos-card{min-height:70px;padding:12px 10px}
   .vos-name{font-size:.9rem}
 }
+/* VOS-Pop-up: Reiter + Programm */
+.vos-tabs{display:inline-flex;gap:4px;margin-top:16px;padding:4px;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px}
+.vos-tab{padding:9px 20px;border:0;border-radius:999px;background:transparent;color:var(--navy);font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;transition:.2s;white-space:nowrap}
+.vos-tab:hover{background:#fff}
+.vos-tab.is-active{background:var(--navy);color:#fff}
+.vos-panel{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.vos-panel[hidden]{display:none}
+.vos-prog{list-style:none;margin:0 auto;padding:18px 0 6px;max-width:740px;display:flex;flex-direction:column;gap:12px}
+.vos-prog-item{display:grid;grid-template-columns:160px 1fr;gap:18px;align-items:start;padding:16px 20px;text-align:left;
+  border:1.5px solid var(--line);border-radius:var(--radius-sm);background:#fff}
+.vos-prog-time{font-weight:700;color:#960001;font-size:.98rem;line-height:1.35}
+.vos-prog-main{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.vos-prog-title{font-weight:600;color:var(--navy);font-size:1.02rem;line-height:1.3}
+.vos-prog-info{color:var(--ink);font-size:.9rem;line-height:1.45}
+.vos-prog-place{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.86rem}
+.vos-prog-link{display:inline-flex;align-items:center;gap:3px;color:var(--blue);font-weight:600;font-size:.88rem}
+@media (max-width:560px){
+  .vos-tabs{margin-top:12px}
+  .vos-tab{padding:8px 14px;font-size:.84rem}
+  .vos-tab-long{display:none}
+  .vos-sub{display:none}
+  .vos-prog{padding-top:12px}
+  .vos-prog-item{grid-template-columns:1fr;gap:4px;padding:14px 16px}
+}
 
 </style>
 </head>
