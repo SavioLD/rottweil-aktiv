@@ -584,12 +584,12 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
         </div>
       </article>
 
-      <!-- Baustellen-Führung Friedrichsplatz (Verkaufsoffener Sonntag) -->
+      <!-- Baustellenführungen + LGS-Büro (Verkaufsoffener Sonntag) -->
       <article class="ncard">
         <div class="ncard__body">
           <p class="ncard__meta">18. Oktober 2026 &nbsp;•&nbsp; <b>Alle</b></p>
-          <h3 class="ncard__title">Baustellen-Führung am Friedrichsplatz</h3>
-          <p class="ncard__excerpt">Ein weiterer Programmpunkt am verkaufsoffenen Sonntag: Mobilitätsbeauftragter Horst Bisinger führt über die Baustelle am Friedrichsplatz – um <strong>14:00 und 15:30 Uhr</strong>, jeweils ca. 45 Minuten, ohne Anmeldung. Treffpunkt: Friedrichsplatz, am Hauptkreuz.</p>
+          <h3 class="ncard__title">Baustellenführungen &amp; offenes LGS-Büro</h3>
+          <p class="ncard__excerpt">Unter dem Motto „Heute Baustelle. Morgen Lieblingsplatz.“ nimmt Mobilitätsbeauftragter Horst Bisinger Interessierte mit zu den Bauprojekten am Friedrichsplatz, am Kriegsdamm und am Nägelesgraben – um <strong>14:00 und 15:30 Uhr</strong>, jeweils ca. 45 Minuten, kostenlos und ohne Anmeldung (max. ca. 50 Personen). Treffpunkt: Hauptkreuz auf dem Friedrichsplatz. Außerdem lädt das LGS-Büro in der Hochbrücktorstraße zum Tag der offenen Tür rund um die Landesgartenschau 2028 ein.</p>
           <button type="button" class="btn btn--gold ncard__btn" data-vos-open="programm">Ganzes Programm ansehen</button>
           <span class="ncard__rule"></span>
         </div>
@@ -740,12 +740,13 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
 
   // Programm des Tages (chronologisch, wird so angezeigt)
   var PROGRAMM = [
-    { zeit: '10:30 Uhr', titel: 'Volksbanklauf' },
+    { zeit: '10:30 Uhr', titel: 'Volksbank-Stadtlauf' },
     { zeit: '12–17 Uhr', titel: 'Geschäfte geöffnet', info: 'Einkaufen und Bummeln bei den teilnehmenden Betrieben', ort: 'Rottweiler Innenstadt & Saline' },
     { zeit: '14:00 Uhr', titel: 'Kinderführung am Schwarzen Tor', info: 'ca. 30 Minuten · kostenlos · mit Anmeldung', ort: 'Treffpunkt: vor dem Schwarzen Tor',
       link: { href: 'https://www.tourismus-rottweil.de/das-erlebnis/fuehrungen/oeffentliche-fuehrungen?re-product-id=320492&rwstep=product', text: 'Zur Anmeldung' } },
-    { zeit: '14:00 & 15:30 Uhr', titel: 'Baustellen-Führung Friedrichsplatz', info: 'mit Mobilitätsbeauftragtem Horst Bisinger · jeweils ca. 45 Minuten · ohne Anmeldung', ort: 'Treffpunkt: Friedrichsplatz, am Hauptkreuz' },
-    { zeit: '14:30–17 Uhr', titel: 'Kurzführungen am Schwarzen Tor', info: 'max. 30 Minuten · kostenlos · ohne Anmeldung', ort: 'Treffpunkt: vor dem Schwarzen Tor' }
+    { zeit: '14:00 & 15:30 Uhr', titel: 'Baustellenführung „Heute Baustelle. Morgen Lieblingsplatz.“', info: 'Mit Mobilitätsbeauftragtem Horst Bisinger zu den Bauprojekten am Friedrichsplatz, am Kriegsdamm und am Nägelesgraben · jeweils ca. 45 Minuten · kostenlos · ohne Anmeldung · max. ca. 50 Personen', ort: 'Treffpunkt: Hauptkreuz auf dem Friedrichsplatz' },
+    { zeit: '14:30–17 Uhr', titel: 'Kurzführungen am Schwarzen Tor', info: 'max. 30 Minuten · kostenlos · ohne Anmeldung', ort: 'Treffpunkt: vor dem Schwarzen Tor' },
+    { zeit: 'Außerdem', titel: 'Tag der offenen Tür im LGS-Büro', info: 'Das Team der Landesgartenschau Rottweil 2028 informiert über die laufenden LGS-Themen und lädt zum Austausch ein', ort: 'LGS-Büro, Hochbrücktorstraße' }
   ];
 
   function esc(s) {
