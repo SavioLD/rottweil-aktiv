@@ -1,0 +1,503 @@
+/* =====================================================================
+   Rottweil aktiv – Gewerbe- und Handelsverein Rottweil e.V.
+   Design: Navy + Gold, freundlich, mobil-first
+   ===================================================================== */
+
+/* ---------- Tokens ---------- */
+:root{
+  --navy:        #111d5e;   /* dunkles Blau – Headlines (Original) */
+  --navy-deep:   #0c1546;   /* Footer-Hintergrund */
+  --blue:        #001aa7;   /* Marken-Royalblau – Karten, CTA, Hero (Original) */
+  --blue-dark:   #001487;
+  --gold:        #f5b800;   /* Akzent-Gelb */
+  --gold-deep:   #e0a800;
+  --pink:        #ec1e8c;   /* Button-Outline / Akzent */
+  --red:         #ec3b3b;   /* Deko-Punkte */
+  --purple:      #5b3df5;   /* Deko-Quadrat */
+  --ink:         #2b2f38;   /* Fließtext */
+  --muted:       #6b7280;
+  --line:        #e6e8ef;
+  --bg:          #ffffff;
+  --bg-soft:     #f6f8fc;
+  --white:       #ffffff;
+
+  --shadow:      0 18px 40px -18px rgba(11,31,107,.35);
+  --shadow-sm:   0 8px 22px -12px rgba(11,31,107,.30);
+  --radius:      22px;
+  --radius-sm:   14px;
+
+  --font:        'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --shell:       1180px;
+}
+
+/* ---------- Reset ---------- */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;line-height:1.12;color:var(--navy);font-weight:800;letter-spacing:-.01em}
+p{margin:0 0 1em}
+ul{margin:0;padding:0;list-style:none}
+button{font-family:inherit;cursor:pointer}
+
+.shell{width:100%;max-width:var(--shell);margin:0 auto;padding:0 22px}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5em;
+  padding:14px 30px;border-radius:999px;font-weight:600;font-size:1rem;
+  border:2px solid transparent;transition:.2s ease;text-align:center;line-height:1.2;
+}
+.btn--gold{background:var(--gold);color:var(--navy);box-shadow:0 8px 22px -8px rgba(245,184,0,.7)}
+.btn--gold:hover{background:var(--gold-deep);transform:translateY(-2px)}
+.btn--outline{background:transparent;border-color:var(--pink);color:var(--gold-deep)}
+.btn--outline:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+.btn--navy{background:var(--navy);color:#fff}
+.btn--navy:hover{background:var(--blue);transform:translateY(-2px)}
+.btn--white{background:#fff;color:var(--navy);border-color:#fff}
+.btn--white:hover{transform:translateY(-2px)}
+
+/* ---------- Header / Nav ---------- */
+.site-header{
+  position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line);
+}
+.site-header__inner{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:54px;width:auto}
+.brand__name{display:none}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a{font-weight:600;color:var(--navy);font-size:1rem;position:relative;padding:6px 0}
+.nav a:hover,.nav a.is-active{color:var(--gold-deep)}
+.nav a.is-active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:3px;background:var(--gold);border-radius:3px}
+.nav__cta{margin-left:6px}
+
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;padding:8px}
+.nav-toggle span{width:26px;height:3px;background:var(--navy);border-radius:3px;transition:.25s}
+
+/* ---------- Decorative bits ---------- */
+.dots{display:grid;grid-template-columns:repeat(4,8px);gap:7px;width:max-content}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--red);display:block}
+.tri{width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:34px solid var(--gold)}
+.square{width:40px;height:40px;background:var(--purple);border-radius:10px;transform:rotate(8deg);box-shadow:var(--shadow-sm)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:54px 0 44px}
+.hero__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:30px;align-items:center;position:relative}
+.hero__card{
+  background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:48px 44px;position:relative;z-index:2;
+}
+.hero__title{font-size:clamp(2.4rem,6vw,4.3rem);letter-spacing:.01em;text-transform:uppercase;margin-bottom:22px}
+.hero__lead{font-size:1.15rem;color:var(--ink);max-width:34ch}
+.hero__media{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:420px;
+  background:linear-gradient(135deg,#cfe0f5,#a9c6ec);}
+.hero__media img{width:100%;height:100%;object-fit:cover;min-height:420px}
+/* Hero-Deko: Cluster unten links unter der Karte – überlappt keinen Text */
+.hero__deco{position:absolute;left:2px;bottom:-28px;display:flex;align-items:center;gap:20px;z-index:1}
+.hero__deco .dots,.hero__deco .square,.hero__deco .tri{position:static;flex:none}
+
+/* ---------- Section heading ---------- */
+.section{padding:64px 0}
+.section--soft{background:var(--bg-soft)}
+.kicker{color:var(--gold-deep);font-weight:600;letter-spacing:.02em;margin-bottom:6px}
+.heading{font-size:clamp(1.8rem,4.4vw,2.9rem);text-transform:uppercase}
+.heading--center{text-align:center}
+.heading .accent{color:var(--gold-deep)}
+.section__head{margin-bottom:38px}
+
+/* ---------- News cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.ncard{
+  background:var(--blue);color:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.22s ease;
+}
+.ncard:hover{transform:translateY(-5px)}
+.ncard__media{height:170px;background:linear-gradient(135deg,var(--blue),var(--navy));overflow:hidden}
+.ncard__media img{width:100%;height:100%;object-fit:cover}
+.ncard__body{padding:22px 22px 26px}
+.ncard__meta{font-size:.82rem;opacity:.85;margin-bottom:10px}
+.ncard__meta b{color:var(--gold);font-weight:600}
+.ncard__title{color:#fff;font-size:1.18rem;line-height:1.25;margin-bottom:14px}
+.ncard__excerpt{font-size:.95rem;opacity:.9;margin-bottom:0}
+.ncard__rule{height:4px;width:64px;border-radius:4px;margin-top:16px;
+  background:linear-gradient(90deg,var(--pink),var(--gold))}
+.center-cta{text-align:center;margin-top:40px}
+
+/* ---------- About split ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about__title{font-size:clamp(1.9rem,4.6vw,3rem);text-transform:uppercase;margin-bottom:24px}
+.about__title .accent{display:block;color:var(--gold-deep)}
+.about p{font-size:1.08rem}
+.about__media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:380px;
+  background:linear-gradient(135deg,#cfe0f5,#a9c6ec)}
+.about__media img{width:100%;height:100%;object-fit:cover;min-height:380px}
+
+/* ---------- Big CTA box ---------- */
+.cta-wrap{position:relative;padding:30px 0 0}
+.cta-box{
+  background:var(--blue);color:#fff;border-radius:30px;text-align:center;
+  padding:54px 30px;box-shadow:var(--shadow);position:relative;max-width:920px;margin:0 auto;
+}
+.cta-box h2{color:#fff;font-size:clamp(1.7rem,4vw,2.6rem);text-transform:uppercase;margin-bottom:16px}
+.cta-box p{max-width:46ch;margin:0 auto 28px;opacity:.92}
+.cta-box__btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.cta-box .dots{position:absolute;top:-14px}
+.cta-box .dots--l{left:30px}
+.cta-box .dots--r{right:30px}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--navy-deep);color:#dfe4f5;padding:90px 0 0;margin-top:0;position:relative}
+.footer__brand{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:26px}
+.footer__brand img{height:74px}
+.footer__brand span{font-size:1.7rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.02em}
+.footer__links{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:40px}
+.footer__links a{opacity:.9}
+.footer__links a:hover{color:var(--gold)}
+.footer__bar{border-top:1px solid rgba(255,255,255,.14);padding:22px 0;font-size:.88rem}
+.footer__bar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer__bar a{color:var(--gold)}
+.footer__social{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--navy)}
+.footer__social:hover{background:#fff}
+
+/* footer top CTA overlap */
+.footer-cta{margin-bottom:-60px;position:relative;z-index:3}
+
+/* ---------- Page hero (subpages) ---------- */
+.page-hero{background:var(--blue);color:#fff;padding:70px 0;text-align:center;position:relative;overflow:hidden}
+.page-hero h1{color:#fff;font-size:clamp(2rem,5vw,3.2rem);text-transform:uppercase}
+.page-hero p{max-width:54ch;margin:14px auto 0;opacity:.9}
+.page-hero .dots{position:absolute;opacity:.5}
+.page-hero .dots--a{top:30px;left:8%}
+.page-hero .dots--b{bottom:30px;right:8%}
+
+/* ---------- Jobbörse ---------- */
+.job-toolbar{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:30px}
+.job-search{flex:1 1 260px;display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);
+  border-radius:999px;padding:10px 18px;box-shadow:var(--shadow-sm)}
+.job-search input{border:0;outline:0;font:inherit;flex:1;background:none;color:var(--ink)}
+.job-filters{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Jobbörse: einheitliches Rottweil-aktiv-Blau (nur diese Seite) */
+.page-jobs .chip{color:var(--blue)}
+.page-jobs .chip.is-active{background:var(--blue);border-color:var(--blue);color:#fff}
+.page-jobs .btn--navy{background:var(--blue)}
+.page-jobs .btn--navy:hover{background:var(--blue-dark)}
+.page-jobs .jcard__logo{color:var(--blue)}
+.page-jobs .jcard__title{color:var(--blue)}
+.page-jobs .heading{color:var(--blue)}
+.page-jobs .kicker{color:var(--gold-deep)}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 18px;font-weight:600;
+  font-size:.92rem;color:var(--navy);transition:.18s}
+.chip:hover{border-color:var(--gold)}
+.chip.is-active{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+.jobs{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.jcard{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:26px 26px 24px;
+  box-shadow:var(--shadow-sm);transition:.2s;display:flex;flex-direction:column;gap:6px}
+.jcard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d7dcec}
+.jcard__top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.jcard__logo{width:52px;height:52px;border-radius:12px;flex:none;display:grid;place-items:center;
+  background:var(--bg-soft);font-weight:800;color:var(--navy);font-size:1.1rem;border:1px solid var(--line)}
+.jcard__company{font-size:.9rem;color:var(--muted);font-weight:600;margin:0}
+.jcard__title{font-size:1.25rem;margin:2px 0 4px}
+.jcard__tags{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}
+.tag{font-size:.78rem;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--bg-soft);color:var(--navy)}
+.tag--type{background:#eaf0ff;color:var(--blue)}
+.tag--cat{background:#fff5d9;color:var(--gold-deep)}
+.jcard__desc{font-size:.95rem;color:var(--ink);margin-bottom:16px;flex:1}
+.jcard__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.jcard__link{display:inline-block;margin:0 auto 16px;padding:10px 20px;border-radius:999px;background:var(--blue);color:#fff;font-weight:600;font-size:.9rem;transition:.2s}
+.jcard__link:hover{background:var(--blue-dark)}
+.jcard__loc{font-size:.88rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.jobs-empty{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1}
+
+/* Jobbörse: Firmen-Übersicht + Detail */
+.companies{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ccard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:32px 22px;
+  box-shadow:var(--shadow-sm);cursor:pointer;font:inherit;transition:.2s}
+.ccard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#c9d2ee}
+.ccard__logo{width:66px;height:66px;border-radius:16px;display:grid;place-items:center;margin-bottom:4px;
+  background:var(--bg-soft);color:var(--blue);font-weight:800;font-size:1.4rem;border:1px solid var(--line)}
+.ccard__name{font-weight:700;color:var(--navy);font-size:1.15rem;line-height:1.25}
+.ccard__count{color:var(--muted);font-size:.95rem}
+.ccard__go{margin-top:6px;color:var(--blue);font-weight:600;font-size:.92rem}
+.jobs-back{margin-bottom:14px;text-align:center}
+.backlink{background:none;border:0;color:var(--blue);font-weight:600;font:inherit;cursor:pointer;padding:6px 2px}
+.backlink:hover{color:var(--gold-deep)}
+.jobs-company-head{text-align:center;text-transform:uppercase;margin:0 0 26px;color:var(--blue)}
+
+/* member submit box */
+.submit-box{background:var(--bg-soft);border:1.5px dashed #c9d2ee;border-radius:var(--radius);
+  padding:40px 34px;margin-top:54px;text-align:center}
+.submit-box h3{font-size:1.5rem;text-transform:uppercase;margin-bottom:10px}
+.submit-box p{max-width:52ch;margin:0 auto 22px;color:var(--ink)}
+
+/* form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:760px;margin:30px auto 0;text-align:left}
+.field{display:flex;flex-direction:column;gap:6px}
+.field--full{grid-column:1/-1}
+.field label{font-weight:600;font-size:.92rem;color:var(--navy)}
+.field input,.field select,.field textarea{
+  font:inherit;padding:12px 15px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--gold)}
+.field textarea{min-height:120px;resize:vertical}
+.form-actions{grid-column:1/-1;text-align:center;margin-top:6px}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.info-list{display:flex;flex-direction:column;gap:22px}
+.info-item{display:flex;gap:16px;align-items:flex-start}
+.info-item .ic{width:46px;height:46px;border-radius:12px;background:var(--navy);color:var(--gold);flex:none;
+  display:grid;place-items:center}
+.info-item h4{margin-bottom:2px;font-size:1.05rem}
+.info-item p{margin:0;color:var(--ink)}
+
+/* Kontakt – oben (Info + Formular) */
+.contact-top{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:start}
+.contact-info h2{font-size:clamp(1.7rem,3.6vw,2.5rem);text-transform:uppercase;margin-bottom:18px}
+.contact-info__org{color:var(--ink);margin-bottom:28px}
+.contact-lines{display:flex;flex-direction:column;gap:16px}
+.contact-lines li{display:flex;align-items:center;gap:14px;color:var(--ink)}
+.contact-lines .ci{width:24px;height:24px;color:var(--navy);flex:none;display:grid;place-items:center}
+.contact-lines a{color:var(--ink)}
+.contact-lines a:hover{color:var(--gold-deep)}
+
+.cform h2{font-size:clamp(1.7rem,3.6vw,2.5rem);text-transform:uppercase;margin-bottom:24px}
+.cform .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cform input,.cform textarea{width:100%;font:inherit;padding:17px 22px;border:0;border-radius:16px;background:#fff;
+  color:var(--ink);box-shadow:0 12px 30px -16px rgba(11,31,107,.55);margin-bottom:18px}
+.cform input::placeholder,.cform textarea::placeholder{color:#9aa1b2}
+.cform input:focus,.cform textarea:focus{outline:2px solid var(--gold)}
+.cform textarea{min-height:200px;resize:vertical}
+.cform .btn-send{width:100%;padding:18px;border:0;border-radius:16px;background:var(--gold);color:var(--navy);
+  font-weight:700;font-size:1.05rem;box-shadow:0 16px 34px -12px rgba(245,184,0,.85);transition:.2s}
+.cform .btn-send:hover{background:var(--gold-deep)}
+
+/* Kontakt – Icon-Karten */
+.contact-icons{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:80px}
+.cicon{text-align:center;padding:36px 22px;position:relative}
+.cicon--card{background:#fff;border-radius:22px;box-shadow:var(--shadow-sm)}
+.cicon__badge{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;color:#fff}
+.cicon__badge--gold{background:var(--gold);box-shadow:0 0 38px -4px rgba(245,184,0,.85)}
+.cicon__badge--red{background:#ef4444;box-shadow:0 0 38px -4px rgba(239,68,68,.7)}
+.cicon__badge--purple{background:#6d4bf6;box-shadow:0 0 38px -4px rgba(109,75,246,.7)}
+.cicon h3{font-size:1.35rem;text-transform:uppercase;color:#222;margin-bottom:12px}
+.cicon p{color:var(--muted);margin:0;line-height:1.6}
+.cicon p a{color:var(--muted)}
+.cicon p a:hover{color:var(--gold-deep)}
+.cicon .dots{position:absolute;opacity:.85}
+.cicon .dots--tl{top:-12px;left:-12px}
+.cicon .dots--br{bottom:-12px;right:-12px}
+
+/* prose */
+.prose{max-width:760px;margin:0 auto}
+.prose h2{font-size:1.6rem;text-transform:uppercase;margin:34px 0 12px}
+.prose p{font-size:1.05rem}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:14px}
+.value{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:26px 22px;box-shadow:var(--shadow-sm)}
+.value .em{font-size:1.8rem;display:block;margin-bottom:8px}
+.value__bar{display:block;width:44px;height:4px;border-radius:4px;margin:0 auto 14px;background:linear-gradient(90deg,var(--pink),var(--gold))}
+.value h4{margin-bottom:6px}
+.value p{margin:0;font-size:.96rem;color:var(--ink)}
+
+/* team – Vorstand & Ausschuss */
+.team{max-width:520px;margin:8px auto 0;display:flex;flex-direction:column}
+.member{text-align:center;padding:40px 0;border-bottom:1px solid var(--line)}
+.member:first-child{padding-top:16px}
+.member:last-child{border-bottom:0;padding-bottom:0}
+.member__img,.member__ph{width:230px;height:250px;margin:0 auto 24px;border-radius:20px;object-fit:cover;
+  box-shadow:0 16px 44px -10px rgba(245,184,0,.65), 0 0 0 4px #fff;background:var(--bg-soft)}
+.member__ph{display:grid;place-items:center;color:var(--navy);font-weight:800;font-size:2.4rem}
+.member__name{font-size:1.55rem;text-transform:uppercase;letter-spacing:.02em;color:#222}
+.member__role{color:var(--muted);margin:6px 0 18px}
+.member__org{font-weight:700;color:#222;margin-bottom:2px}
+.member__line{color:var(--muted);font-size:.97rem;line-height:1.55}
+.member__line a{color:var(--muted)}
+.member__line a:hover{color:var(--gold-deep)}
+
+/* Mitglied werden – Split */
+.join{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.join__media{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);min-height:420px;
+  background:linear-gradient(135deg,#cfe0f5,#a9c6ec)}
+.join__media img{width:100%;height:100%;object-fit:cover;min-height:420px}
+.join__title{font-size:clamp(1.9rem,4.4vw,2.8rem);text-transform:uppercase;margin-bottom:20px}
+.join__title .accent{display:block;color:var(--gold-deep)}
+.join p{font-size:1.08rem}
+.join a.inline{color:#3aa0d8;font-weight:600}
+.join a.inline:hover{color:var(--gold-deep)}
+
+/* notice */
+.notice{display:none;margin:18px auto 0;max-width:760px;padding:14px 18px;border-radius:12px;
+  background:#e7f7ec;color:#1c7a3e;border:1px solid #b6e3c4;font-weight:600;text-align:center}
+.notice.is-on{display:block}
+
+/* ============================================================
+   Einheitlich ZENTRIERT (Web + Mobil)
+   ============================================================ */
+/* Hero */
+.hero__card{text-align:center}
+.hero__lead{max-width:46ch;margin-left:auto;margin-right:auto}
+.hero__deco{position:static;justify-content:center;margin-top:26px}
+
+/* Startseite „Wer steckt hinter" */
+.about{text-align:center}
+
+/* News-Karten */
+.ncard__body{text-align:center}
+.ncard__rule{margin-left:auto;margin-right:auto}
+
+/* Über uns – Intro/Werte + Mitglied werden */
+.prose{text-align:center}
+.value{text-align:center}
+.join{text-align:center}
+.join__title .accent{display:block}
+
+/* Kontakt */
+.contact-info{text-align:center}
+.contact-lines li{justify-content:center}
+.cform{text-align:center}
+.field label{text-align:center}
+
+/* Jobbörse – Karten & Toolbar */
+.job-toolbar{justify-content:center}
+.job-filters{justify-content:center}
+.jcard{text-align:center}
+.jcard__top{flex-direction:column-reverse;align-items:center;gap:10px}
+.jcard__tags{justify-content:center}
+.jcard__desc{text-align:center}
+.jcard__foot{justify-content:center;gap:20px}
+
+/* Footer-Leiste zentriert */
+.footer__bar-inner{justify-content:center;text-align:center;flex-wrap:wrap}
+
+/* ---------- Mobile ---------- */
+@media (max-width:960px){
+  .hero__grid{grid-template-columns:1fr}
+  .hero__media{order:-1;min-height:280px}
+  .hero__media img{min-height:280px}
+  .hero__card{padding:34px 26px}
+  .cards{grid-template-columns:1fr 1fr}
+  .about{grid-template-columns:1fr;gap:30px}
+  .about__media{min-height:280px;order:-1}
+  .jobs{grid-template-columns:1fr}
+  .companies{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr;gap:30px}
+  .values{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .join{grid-template-columns:1fr;gap:28px}
+  .join__media{order:-1;min-height:280px}
+  .join__media img{min-height:280px}
+  .contact-top{grid-template-columns:1fr;gap:40px}
+  .contact-icons{grid-template-columns:1fr;gap:40px;margin-top:56px}
+  .cicon{padding:26px 18px}
+}
+/* Navigation klappt schon früher ins Mobile-Menü, damit nichts abgeschnitten wird */
+@media (max-width:900px){
+  .nav{
+    position:fixed;inset:78px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+    background:#fff;border-bottom:1px solid var(--line);padding:8px 0;
+    transform:translateY(-130%);transition:transform .28s ease;box-shadow:var(--shadow);
+  }
+  .nav.is-open{transform:translateY(0)}
+  .nav a{padding:14px 24px;border-bottom:1px solid var(--line)}
+  .nav a.is-active::after{display:none}
+  .nav__cta{margin:12px 24px;text-align:center}
+  .nav-toggle{display:flex}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .cards{grid-template-columns:1fr}
+  .companies{grid-template-columns:1fr}
+  .cform .row{grid-template-columns:1fr}
+  .section{padding:48px 0}
+  .cta-box{padding:40px 22px}
+  .footer{padding-top:80px}
+}
+
+/* ---------- Verkaufsoffener Sonntag: Pop-up „Teilnehmende Betriebe" ---------- */
+.ncard__btn{margin-top:16px;padding:10px 20px;font-size:.9rem}
+body.vos-lock{overflow:hidden}
+.vos-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;
+  padding:24px;background:rgba(12,21,70,.58);opacity:0;transition:opacity .2s ease}
+.vos-overlay.is-open{opacity:1}
+.vos-overlay[hidden],.vos-empty[hidden]{display:none}
+.vos-dialog{position:relative;background:#fff;width:min(1000px,100%);max-height:min(90vh,920px);
+  display:flex;flex-direction:column;overflow:hidden;border-radius:var(--radius);
+  box-shadow:0 30px 80px -20px rgba(12,21,70,.55);transform:translateY(14px);transition:transform .2s ease}
+.vos-overlay.is-open .vos-dialog{transform:none}
+.vos-head{padding:30px 64px 20px;text-align:center;border-bottom:1px solid var(--line)}
+.vos-kicker{margin:0 0 6px;color:#960001;font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.vos-title{margin:0 0 6px;color:var(--navy);font-size:clamp(1.5rem,3.2vw,2.05rem);line-height:1.15}
+.vos-sub{margin:0;color:var(--muted);font-size:.95rem}
+.vos-kicker span{white-space:nowrap}
+.vos-close{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;background:#fff;color:var(--navy);border:1.5px solid var(--line);cursor:pointer;transition:.2s}
+.vos-close:hover{border-color:var(--navy);background:var(--bg-soft)}
+.vos-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px;padding:16px 34px 12px}
+.vos-search{flex:0 1 380px;width:100%;padding:11px 18px;border:1.5px solid var(--line);border-radius:999px;
+  font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg-soft);outline:none;transition:.2s}
+.vos-search:focus{border-color:var(--blue);background:#fff}
+.vos-count{color:var(--muted);font-size:.88rem}
+.vos-body{overflow-y:auto;padding:6px 34px 26px;-webkit-overflow-scrolling:touch}
+.vos-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.vos-item[hidden]{display:none}
+.vos-card{height:100%;min-height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  padding:14px 16px;text-align:center;background:#fff;color:var(--ink);text-decoration:none;
+  border:1.5px solid var(--line);border-radius:var(--radius-sm);transition:.2s ease}
+a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.vos-logo{display:flex;align-items:center;justify-content:center;height:46px;margin-bottom:2px}
+.vos-logo img{max-height:46px;max-width:140px;object-fit:contain}
+.vos-name{font-weight:600;color:var(--navy);line-height:1.25;font-size:.98rem}
+.vos-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;font-size:.78rem}
+.vos-tag{padding:2px 10px;border-radius:999px;background:#fdecea;color:#960001;font-weight:500}
+.vos-link{display:inline-flex;align-items:center;gap:3px;color:var(--blue);font-weight:600}
+.vos-empty{margin:20px 0 0;text-align:center;color:var(--muted)}
+.vos-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 22px;padding:14px 34px;
+  background:var(--bg-soft);border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;text-align:center}
+.vos-done{padding:10px 24px;font-size:.92rem}
+@media (max-width:900px){.vos-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){
+  .vos-overlay{padding:0;align-items:flex-end}
+  .vos-dialog{max-height:94vh;border-radius:20px 20px 0 0}
+  .vos-head{padding:24px 56px 16px}
+  .vos-tools{padding:12px 16px 10px}
+  .vos-body{padding:4px 14px 20px}
+  .vos-foot{padding:12px 16px}
+  .vos-foot-info{display:none}
+  .vos-kicker{letter-spacing:.1em;font-size:.74rem}
+  .vos-grid{gap:8px}
+  .vos-card{min-height:70px;padding:12px 10px}
+  .vos-name{font-size:.9rem}
+}
+/* VOS-Pop-up: Reiter + Programm */
+.vos-tabs{display:inline-flex;gap:4px;margin-top:16px;padding:4px;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px}
+.vos-tab{padding:9px 20px;border:0;border-radius:999px;background:transparent;color:var(--navy);font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;transition:.2s;white-space:nowrap}
+.vos-tab:hover{background:#fff}
+.vos-tab.is-active{background:var(--navy);color:#fff}
+.vos-panel{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.vos-panel[hidden]{display:none}
+.vos-prog{list-style:none;margin:0 auto;padding:18px 0 6px;max-width:740px;display:flex;flex-direction:column;gap:12px}
+.vos-prog-item{display:grid;grid-template-columns:160px 1fr;gap:18px;align-items:start;padding:16px 20px;text-align:left;
+  border:1.5px solid var(--line);border-radius:var(--radius-sm);background:#fff}
+.vos-prog-time{font-weight:700;color:#960001;font-size:.98rem;line-height:1.35}
+.vos-prog-main{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.vos-prog-title{font-weight:600;color:var(--navy);font-size:1.02rem;line-height:1.3}
+.vos-prog-info{color:var(--ink);font-size:.9rem;line-height:1.45}
+.vos-prog-place{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.86rem}
+.vos-prog-link{display:inline-flex;align-items:center;gap:3px;color:var(--blue);font-weight:600;font-size:.88rem}
+@media (max-width:560px){
+  .vos-tabs{margin-top:12px}
+  .vos-tab{padding:8px 14px;font-size:.84rem}
+  .vos-tab-long{display:none}
+  .vos-sub{display:none}
+  .vos-prog{padding-top:12px}
+  .vos-prog-item{grid-template-columns:1fr;gap:4px;padding:14px 16px}
+}
