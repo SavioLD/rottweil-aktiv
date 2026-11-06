@@ -121,16 +121,15 @@ Console einreichen).
 
 1. **Datenschutzerklärung ist ein Platzhalter** – muss durch eine vollständige,
    rechtssichere Fassung ersetzt werden (`_source/datenschutz.html`).
-2. **Impressum:** Registergericht und Vereinsregister-Nummer fehlen (`[Amtsgericht]`, `[VR-Nummer]`).
-3. **Satzung** ist ein Platzhalter – gültige Satzung einfügen oder als PDF verlinken.
-4. **`GHV_Beitrittsformular.pdf`** ist auf „Über uns“ verlinkt, liegt aber nicht im Repo → hochladen.
-5. **Instagram-Links** zeigen überall nur auf `https://www.instagram.com/` → echtes Profil eintragen
+2. **Satzung** ist ein Platzhalter – gültige Satzung einfügen oder als PDF verlinken.
+3. **`GHV_Beitrittsformular.pdf`** ist auf „Über uns“ verlinkt, liegt aber nicht im Repo → hochladen.
+4. **Instagram-Links** zeigen überall nur auf `https://www.instagram.com/` → echtes Profil eintragen
    (in allen Seiten unter `_source/` per Suchen & Ersetzen, dann bauen).
-6. **Google Fonts** (Poppins) werden extern von Google geladen – aus Datenschutzgründen
+5. **Google Fonts** (Poppins) werden extern von Google geladen – aus Datenschutzgründen
    (DSGVO) empfehlenswert, die Schrift lokal einzubinden.
-7. **Parkzeit-Seite:** Einige FAQ-Antworten stehen noch auf „Antwort folgt“.
-8. **RottweilCard-Kachel** (Aktuelles): Bild `rottweilcard.png` fehlt, die Kachel wird ohne Bild angezeigt.
-9. **Ungenutzte Altdateien** im Root, können gelöscht werden: `style.css`, `script.js`,
+6. **Parkzeit-Seite:** Einige FAQ-Antworten stehen noch auf „Antwort folgt“.
+7. **RottweilCard-Kachel** (Aktuelles): Bild `rottweilcard.png` fehlt, die Kachel wird ohne Bild angezeigt.
+8. **Ungenutzte Altdateien** im Root, können gelöscht werden: `style.css`, `script.js`,
    `jobs.js`, `team.js`, `logo.svg`, `aktuelles_ENTWURF.html`, `Logo_Homepage_200x45_V1.avif`,
    `gutscheinkarte.png`, `Polygon-shape-border.svg`, `Polygon-shape-fill.svg`,
    `hero-img-background-11.svg`, `hero-img-background-22.svg`, `pattern-left.svg`.
