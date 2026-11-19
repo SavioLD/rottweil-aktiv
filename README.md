@@ -56,7 +56,7 @@ beim Build komplett überschrieben – direkte Änderungen dort gehen sonst verl
 # 2. Bauen (aus dem Repo-Root, benötigt nur Node.js >= 14):
 node _source/tools/build.js
 # 3. Lokal prüfen:
-python3 -m http.server 8000     # dann http://localhost:8000 öffnen
+node _source/tools/serve.js      # dann http://localhost:8000 öffnen (Strg + C beendet)
 # 4. Veröffentlichen:
 git add -A && git commit -m "…" && git push
 ```
@@ -68,9 +68,14 @@ Bilder vorher sinnvoll verkleinern (Fotos ca. 1200–1600 px breit, JPG).
 ### Häufige Aufgaben
 
 - **Neue Meldung / Veranstaltung:** In `_source/aktuelles.html` einen bestehenden
-  `<article class="ncard">…</article>`-Block kopieren und anpassen (neueste oben).
-  Auf der Startseite (`_source/index.html`) stehen die 3 aktuellsten – dort ebenfalls
-  austauschen. Optional mit Bild (`ncard__media`) und Button (`btn btn--gold ncard__btn`).
+  `<article class="ncard" data-bis="JJJJ-MM-TT">…</article>`-Block kopieren und anpassen.
+  `data-bis` = letzter Tag des Events (bei reinen Meldungen: deren Datum). Die Seite sortiert
+  die Kacheln beim Laden automatisch in „Bevorstehende Events“ (ab heute, nächstes zuerst) und
+  „Rückblick“ (neuestes zuerst) – die Position im Quelltext ist egal.
+  Die Startseite (`_source/index.html`) zeigt **nur bevorstehende Events**: Kachel dort
+  zusätzlich einfügen, ebenfalls mit `data-bis`. Nach diesem Datum wird sie automatisch
+  ausgeblendet (gibt es keine, erscheint ein Hinweistext); alte Kacheln dort gelegentlich löschen.
+  Der Button „Vergangene Events“ führt zu `aktuelles.html#rueckblick`. Optional mit Bild (`ncard__media`) und Button (`btn btn--gold ncard__btn`).
 - **Stelle in der Jobbörse:** In `_source/js/jobs.js` ein Objekt im Array `JOBS` ergänzen
   (`company`, `title`, `category`, `type`, `location`, `desc`, `date`, optional `url` –
   Link zur Ausschreibung oder `mailto:`). Firmen-Kacheln entstehen automatisch.

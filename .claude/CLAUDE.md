@@ -19,7 +19,7 @@ dort nichts Internes/Vertrauliches eintragen; diese Datei hier liegt in `.claude
 
 | Aufgabe | Datei |
 |---|---|
-| Meldung/Veranstaltung | `_source/aktuelles.html` (`<article class="ncard">` kopieren, neueste oben) **und** die 3 Kacheln auf `_source/index.html` |
+| Meldung/Veranstaltung | `_source/aktuelles.html` (`<article class="ncard" data-bis="…">` kopieren; `js/script.js` sortiert automatisch in „Bevorstehend“/„Rückblick“) **und**, falls bevorstehendes Event, auch auf `_source/index.html` (Startseite zeigt nur Kommendes; vergangene Kacheln werden per JS ausgeblendet und sollten dort gelegentlich gelöscht werden) |
 | Stellenanzeige | `_source/js/jobs.js` → Array `JOBS` (`company, title, category, type, location, desc, date, url?`). `category` muss einem Filter-Chip entsprechen: Einzelhandel, Gastronomie, Handwerk, Dienstleistung, Ausbildung |
 | Vorstand/Ausschuss | `_source/js/team.js` → Array `TEAM`; Foto als `<vorname-nachname>.jpg` in Root |
 | Pop-up Verkaufsoffener Sonntag | `_source/js/vos.js` → `EVENT_END`, `BETRIEBE`, `PROGRAMM`. Öffnet automatisch nur auf `<body data-vos-auto>` (Startseite) bis `EVENT_END`; Buttons mit `data-vos-open` / `data-vos-open="programm"` |
@@ -30,7 +30,7 @@ dort nichts Internes/Vertrauliches eintragen; diese Datei hier liegt in `.claude
 
 Kachel-Muster (Aktuelles/Startseite):
 ```html
-<article class="ncard">
+<article class="ncard" data-bis="JJJJ-MM-TT">  <!-- letzter Event-Tag bzw. Meldungsdatum (aktuelles.html + index.html) -->
   <div class="ncard__media"><img src="assets/img/BILD.jpg" alt="…" loading="lazy" onerror="this.parentNode.style.display='none'"></div>  <!-- optional -->
   <div class="ncard__body">
     <p class="ncard__meta">TT. Monat JJJJ &nbsp;•&nbsp; <b>Alle</b></p>
@@ -47,7 +47,9 @@ Kachel-Muster (Aktuelles/Startseite):
 1. `git pull` (andere arbeiten ggf. direkt über die GitHub-Weboberfläche – „Add files via upload“).
 2. In `_source/` ändern → `node _source/tools/build.js`.
 3. Prüfen: `git diff --stat` – es sollten nur die erwarteten Root-HTML-Dateien + Quelle geändert sein.
-   Lokal ansehen: `python -m http.server 8000` → http://localhost:8000
+   Lokal ansehen: `node _source/tools/serve.js` → http://localhost:8000 (Python ist auf Rauls Rechner nicht installiert).
+   Screenshots zur Selbstkontrolle: Edge headless (`msedge --headless=new --screenshot=… --window-size=1300,2000 URL`);
+   für Handy-Ansicht die Seite in ein 390 px breites iframe laden (schmale Fenster rendert headless falsch).
 4. Defekte lokale Links prüfen (bekannt fehlend: `rottweilcard.png`, `GHV_Beitrittsformular.pdf`):
    ```bash
    for f in *.html; do grep -oE '(href|src)="[^"#:]+"' "$f" | sed -E 's/^(href|src)="//;s/"$//;s/\?.*//' | sort -u | while read r; do [ -e "$r" ] || echo "$f: $r"; done; done | grep -v "esc("

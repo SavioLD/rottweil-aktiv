@@ -47,9 +47,17 @@
 
 <section class="section section--soft">
   <div class="shell">
-    <div class="cards">
+    <!-- Jede Kachel braucht data-bis="JJJJ-MM-TT" (letzter Tag des Events bzw. Datum der Meldung).
+         Ein Skript (js/script.js) sortiert die Kacheln beim Laden automatisch:
+         ab data-bis = heute oder später → "Bevorstehende Events", sonst → "Rückblick". -->
+    <div class="news-group">
+      <div class="section__head heading--center">
+        <p class="kicker">Nicht verpassen</p>
+        <h2 class="heading heading--center">Bevorstehende Events</h2>
+      </div>
+      <div class="cards" data-news="upcoming">
       <!-- Rottweiler Weihnachtsmarkt 2026 -->
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-12-13">
         <div class="ncard__media"><img src="assets/img/weihnachtsmarkt-2026-flyer.jpg" alt="Flyer Rottweiler Weihnachtsmarkt, 3. bis 13. Dezember 2026" style="object-position:top" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
         <div class="ncard__body">
           <p class="ncard__meta">3.–13. Dezember 2026 &nbsp;•&nbsp; <b>Alle</b></p>
@@ -59,19 +67,28 @@
           <span class="ncard__rule"></span>
         </div>
       </article>
+      </div>
+      <p class="news-empty" data-news-empty hidden>Aktuell sind keine Termine angekündigt – schau bald wieder vorbei!</p>
+    </div>
 
-      <!-- Französischer Brückensamstag -->
-      <article class="ncard">
+    <div class="news-group" id="rueckblick">
+      <div class="section__head heading--center">
+        <p class="kicker">Rückblick</p>
+        <h2 class="heading heading--center">Vergangene Events &amp; Meldungen</h2>
+      </div>
+      <div class="cards" data-news="past">
+      <!-- Schweizer Brückensamstag -->
+      <article class="ncard" data-bis="2026-11-07">
         <div class="ncard__body">
-          <p class="ncard__meta">19. September 2026 &nbsp;•&nbsp; <b>Alle</b></p>
-          <h3 class="ncard__title">Französischer Brückensamstag</h3>
-          <p class="ncard__excerpt">Am Samstag, 19. September 2026, von 13:00–17:00 Uhr dreht sich in der Oberen Hauptstraße alles um unsere Partnerstadt Hyères: Aperó mit Tapenade und typische Spezialitäten der Region, der Verein der Freunde von Hyères sowie Live-Musik und Kinderprogramm.</p>
+          <p class="ncard__meta">7. November 2026 &nbsp;•&nbsp; <b>Alle</b></p>
+          <h3 class="ncard__title">Schweizer Brückensamstag</h3>
+          <p class="ncard__excerpt">Am Samstag, 7. November 2026, von 13:00–17:00 Uhr bringt die Partnerstadt Brugg alpines Flair in die Obere Hauptstraße: originales Schweizer Raclette, Alphornbläser und Aktionen der Freunde von Brugg. Gemeinsam mit Käse Caduff wird das 100-jährige Jubiläum gefeiert – dazu Hüpfburg und Luftballonakrobatik für Kinder.</p>
           <span class="ncard__rule"></span>
         </div>
       </article>
 
       <!-- Verkaufsoffener Sonntag -->
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-10-18">
         <div class="ncard__body">
           <p class="ncard__meta">18. Oktober 2026 &nbsp;•&nbsp; <b>Alle</b></p>
           <h3 class="ncard__title">Verkaufsoffener Sonntag in Rottweil</h3>
@@ -82,7 +99,7 @@
       </article>
 
       <!-- Kurzführungen am Schwarzen Tor (Verkaufsoffener Sonntag) -->
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-10-18">
         <div class="ncard__body">
           <p class="ncard__meta">18. Oktober 2026 &nbsp;•&nbsp; <b>Alle</b></p>
           <h3 class="ncard__title">Kostenlose Kurzführungen am Schwarzen Tor</h3>
@@ -92,7 +109,7 @@
       </article>
 
       <!-- Baustellenführungen + LGS-Büro (Verkaufsoffener Sonntag) -->
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-10-18">
         <div class="ncard__body">
           <p class="ncard__meta">18. Oktober 2026 &nbsp;•&nbsp; <b>Alle</b></p>
           <h3 class="ncard__title">Baustellenführungen &amp; offenes LGS-Büro</h3>
@@ -102,17 +119,17 @@
         </div>
       </article>
 
-      <!-- Schweizer Brückensamstag -->
-      <article class="ncard">
+      <!-- Französischer Brückensamstag -->
+      <article class="ncard" data-bis="2026-09-19">
         <div class="ncard__body">
-          <p class="ncard__meta">7. November 2026 &nbsp;•&nbsp; <b>Alle</b></p>
-          <h3 class="ncard__title">Schweizer Brückensamstag</h3>
-          <p class="ncard__excerpt">Am Samstag, 7. November 2026, von 13:00–17:00 Uhr bringt die Partnerstadt Brugg alpines Flair in die Obere Hauptstraße: originales Schweizer Raclette, Alphornbläser und Aktionen der Freunde von Brugg. Gemeinsam mit Käse Caduff wird das 100-jährige Jubiläum gefeiert – dazu Hüpfburg und Luftballonakrobatik für Kinder.</p>
+          <p class="ncard__meta">19. September 2026 &nbsp;•&nbsp; <b>Alle</b></p>
+          <h3 class="ncard__title">Französischer Brückensamstag</h3>
+          <p class="ncard__excerpt">Am Samstag, 19. September 2026, von 13:00–17:00 Uhr dreht sich in der Oberen Hauptstraße alles um unsere Partnerstadt Hyères: Aperó mit Tapenade und typische Spezialitäten der Region, der Verein der Freunde von Hyères sowie Live-Musik und Kinderprogramm.</p>
           <span class="ncard__rule"></span>
         </div>
       </article>
 
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-04-16">
         <div class="ncard__media"><img src="assets/img/Rottweil-Innenstadt.jpg" alt="" onerror="this.parentNode.style.display='none'"></div>
         <div class="ncard__body">
           <p class="ncard__meta">16. April 2026 &nbsp;•&nbsp; <b>Alle</b></p>
@@ -121,7 +138,8 @@
           <span class="ncard__rule"></span>
         </div>
       </article>
-      <article class="ncard">
+
+      <article class="ncard" data-bis="2026-04-14">
         <div class="ncard__body">
           <p class="ncard__meta">6. April 2026 &nbsp;•&nbsp; <b>Alle</b></p>
           <h3 class="ncard__title">Jahreshauptversammlung von Rottweil Aktiv</h3>
@@ -129,7 +147,8 @@
           <span class="ncard__rule"></span>
         </div>
       </article>
-      <article class="ncard">
+
+      <article class="ncard" data-bis="2026-03-25">
         <div class="ncard__media"><img src="assets/img/rottweilcard.jpg" alt="" onerror="this.parentNode.style.display='none'"></div>
         <div class="ncard__body">
           <p class="ncard__meta">25. März 2026 &nbsp;•&nbsp; <b>Alle</b></p>
@@ -138,6 +157,7 @@
           <span class="ncard__rule"></span>
         </div>
       </article>
+      </div>
     </div>
   </div>
 </section>

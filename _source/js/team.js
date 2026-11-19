@@ -25,12 +25,6 @@ const TEAM = [
     img: 'assets/img/team/ralf-graner.jpg'
   },
   {
-    name: 'Savio Röckle', role: 'Marketing & Kommunikation',
-    org: 'Ländle Digital', address: 'Königstr. 26',
-    phone: '0151 101 88436', email: 'info@laendle-digital.com',
-    img: 'assets/img/team/savio-roeckle.jpg'
-  },
-  {
     name: 'Thomas Makosch', role: 'Gastronomie',
     org: 'Beach0741', address: 'Kriegsdamm 5, Parkdeck 4',
     phone: '0741 34 85 58 91', email: 'info@beach0741.de',

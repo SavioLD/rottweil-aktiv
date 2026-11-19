@@ -128,6 +128,12 @@ button{font-family:inherit;cursor:pointer}
 .ncard__rule{height:4px;width:64px;border-radius:4px;margin-top:16px;
   background:linear-gradient(90deg,var(--pink),var(--gold))}
 .center-cta{text-align:center;margin-top:40px}
+/* Aktuelles: Bevorstehend / Rückblick */
+.news-group + .news-group{margin-top:72px;padding-top:56px;border-top:1px solid var(--line)}
+.cards[data-news="upcoming"],.cards[data-news="teaser"]{grid-template-columns:repeat(auto-fit,minmax(280px,360px));justify-content:center}
+.news-empty{text-align:center;color:var(--muted);margin:0}
+.cards[hidden],.news-empty[hidden]{display:none}
+#rueckblick{scroll-margin-top:100px}   /* Sprungziel unter dem fixierten Header */
 
 /* ---------- About split ---------- */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}

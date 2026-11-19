@@ -149,6 +149,12 @@ button{font-family:inherit;cursor:pointer}
 .ncard__rule{height:4px;width:64px;border-radius:4px;margin-top:16px;
   background:linear-gradient(90deg,var(--pink),var(--gold))}
 .center-cta{text-align:center;margin-top:40px}
+/* Aktuelles: Bevorstehend / Rückblick */
+.news-group + .news-group{margin-top:72px;padding-top:56px;border-top:1px solid var(--line)}
+.cards[data-news="upcoming"],.cards[data-news="teaser"]{grid-template-columns:repeat(auto-fit,minmax(280px,360px));justify-content:center}
+.news-empty{text-align:center;color:var(--muted);margin:0}
+.cards[hidden],.news-empty[hidden]{display:none}
+#rueckblick{scroll-margin-top:100px}   /* Sprungziel unter dem fixierten Header */
 
 /* ---------- About split ---------- */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
@@ -552,9 +558,17 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
 
 <section class="section section--soft">
   <div class="shell">
-    <div class="cards">
+    <!-- Jede Kachel braucht data-bis="JJJJ-MM-TT" (letzter Tag des Events bzw. Datum der Meldung).
+         Ein Skript (js/script.js) sortiert die Kacheln beim Laden automatisch:
+         ab data-bis = heute oder später → "Bevorstehende Events", sonst → "Rückblick". -->
+    <div class="news-group">
+      <div class="section__head heading--center">
+        <p class="kicker">Nicht verpassen</p>
+        <h2 class="heading heading--center">Bevorstehende Events</h2>
+      </div>
+      <div class="cards" data-news="upcoming">
       <!-- Rottweiler Weihnachtsmarkt 2026 -->
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-12-13">
         <div class="ncard__media"><img src="weihnachtsmarkt-2026-flyer.jpg" alt="Flyer Rottweiler Weihnachtsmarkt, 3. bis 13. Dezember 2026" style="object-position:top" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
         <div class="ncard__body">
           <p class="ncard__meta">3.–13. Dezember 2026 &nbsp;•&nbsp; <b>Alle</b></p>
@@ -564,19 +578,28 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
           <span class="ncard__rule"></span>
         </div>
       </article>
+      </div>
+      <p class="news-empty" data-news-empty hidden>Aktuell sind keine Termine angekündigt – schau bald wieder vorbei!</p>
+    </div>
 
-      <!-- Französischer Brückensamstag -->
-      <article class="ncard">
+    <div class="news-group" id="rueckblick">
+      <div class="section__head heading--center">
+        <p class="kicker">Rückblick</p>
+        <h2 class="heading heading--center">Vergangene Events &amp; Meldungen</h2>
+      </div>
+      <div class="cards" data-news="past">
+      <!-- Schweizer Brückensamstag -->
+      <article class="ncard" data-bis="2026-11-07">
         <div class="ncard__body">
-          <p class="ncard__meta">19. September 2026 &nbsp;•&nbsp; <b>Alle</b></p>
-          <h3 class="ncard__title">Französischer Brückensamstag</h3>
-          <p class="ncard__excerpt">Am Samstag, 19. September 2026, von 13:00–17:00 Uhr dreht sich in der Oberen Hauptstraße alles um unsere Partnerstadt Hyères: Aperó mit Tapenade und typische Spezialitäten der Region, der Verein der Freunde von Hyères sowie Live-Musik und Kinderprogramm.</p>
+          <p class="ncard__meta">7. November 2026 &nbsp;•&nbsp; <b>Alle</b></p>
+          <h3 class="ncard__title">Schweizer Brückensamstag</h3>
+          <p class="ncard__excerpt">Am Samstag, 7. November 2026, von 13:00–17:00 Uhr bringt die Partnerstadt Brugg alpines Flair in die Obere Hauptstraße: originales Schweizer Raclette, Alphornbläser und Aktionen der Freunde von Brugg. Gemeinsam mit Käse Caduff wird das 100-jährige Jubiläum gefeiert – dazu Hüpfburg und Luftballonakrobatik für Kinder.</p>
           <span class="ncard__rule"></span>
         </div>
       </article>
 
       <!-- Verkaufsoffener Sonntag -->
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-10-18">
         <div class="ncard__body">
           <p class="ncard__meta">18. Oktober 2026 &nbsp;•&nbsp; <b>Alle</b></p>
           <h3 class="ncard__title">Verkaufsoffener Sonntag in Rottweil</h3>
@@ -587,7 +610,7 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
       </article>
 
       <!-- Kurzführungen am Schwarzen Tor (Verkaufsoffener Sonntag) -->
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-10-18">
         <div class="ncard__body">
           <p class="ncard__meta">18. Oktober 2026 &nbsp;•&nbsp; <b>Alle</b></p>
           <h3 class="ncard__title">Kostenlose Kurzführungen am Schwarzen Tor</h3>
@@ -597,7 +620,7 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
       </article>
 
       <!-- Baustellenführungen + LGS-Büro (Verkaufsoffener Sonntag) -->
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-10-18">
         <div class="ncard__body">
           <p class="ncard__meta">18. Oktober 2026 &nbsp;•&nbsp; <b>Alle</b></p>
           <h3 class="ncard__title">Baustellenführungen &amp; offenes LGS-Büro</h3>
@@ -607,17 +630,17 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
         </div>
       </article>
 
-      <!-- Schweizer Brückensamstag -->
-      <article class="ncard">
+      <!-- Französischer Brückensamstag -->
+      <article class="ncard" data-bis="2026-09-19">
         <div class="ncard__body">
-          <p class="ncard__meta">7. November 2026 &nbsp;•&nbsp; <b>Alle</b></p>
-          <h3 class="ncard__title">Schweizer Brückensamstag</h3>
-          <p class="ncard__excerpt">Am Samstag, 7. November 2026, von 13:00–17:00 Uhr bringt die Partnerstadt Brugg alpines Flair in die Obere Hauptstraße: originales Schweizer Raclette, Alphornbläser und Aktionen der Freunde von Brugg. Gemeinsam mit Käse Caduff wird das 100-jährige Jubiläum gefeiert – dazu Hüpfburg und Luftballonakrobatik für Kinder.</p>
+          <p class="ncard__meta">19. September 2026 &nbsp;•&nbsp; <b>Alle</b></p>
+          <h3 class="ncard__title">Französischer Brückensamstag</h3>
+          <p class="ncard__excerpt">Am Samstag, 19. September 2026, von 13:00–17:00 Uhr dreht sich in der Oberen Hauptstraße alles um unsere Partnerstadt Hyères: Aperó mit Tapenade und typische Spezialitäten der Region, der Verein der Freunde von Hyères sowie Live-Musik und Kinderprogramm.</p>
           <span class="ncard__rule"></span>
         </div>
       </article>
 
-      <article class="ncard">
+      <article class="ncard" data-bis="2026-04-16">
         <div class="ncard__media"><img src="Rottweil-Innenstadt.jpg" alt="" onerror="this.parentNode.style.display='none'"></div>
         <div class="ncard__body">
           <p class="ncard__meta">16. April 2026 &nbsp;•&nbsp; <b>Alle</b></p>
@@ -626,7 +649,8 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
           <span class="ncard__rule"></span>
         </div>
       </article>
-      <article class="ncard">
+
+      <article class="ncard" data-bis="2026-04-14">
         <div class="ncard__body">
           <p class="ncard__meta">6. April 2026 &nbsp;•&nbsp; <b>Alle</b></p>
           <h3 class="ncard__title">Jahreshauptversammlung von Rottweil Aktiv</h3>
@@ -634,7 +658,8 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
           <span class="ncard__rule"></span>
         </div>
       </article>
-      <article class="ncard">
+
+      <article class="ncard" data-bis="2026-03-25">
         <div class="ncard__media"><img src="rottweilcard.png" alt="" onerror="this.parentNode.style.display='none'"></div>
         <div class="ncard__body">
           <p class="ncard__meta">25. März 2026 &nbsp;•&nbsp; <b>Alle</b></p>
@@ -643,6 +668,7 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
           <span class="ncard__rule"></span>
         </div>
       </article>
+      </div>
     </div>
   </div>
 </section>
@@ -685,6 +711,41 @@ a.vos-card:hover,a.vos-card:focus-visible{border-color:var(--blue);box-shadow:va
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  // News-Kacheln nach data-bis (letzter Tag, JJJJ-MM-TT) einordnen:
+  // ab heute = bevorstehend (nächstes zuerst), sonst Rückblick (neuestes zuerst)
+  const d = new Date();
+  const today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  const byDate = function (a, b) { return a.dataset.bis < b.dataset.bis ? -1 : a.dataset.bis > b.dataset.bis ? 1 : 0; };
+  function split(cards) {
+    return {
+      up: cards.filter(function (c) { return c.dataset.bis >= today; }).sort(byDate),
+      past: cards.filter(function (c) { return c.dataset.bis < today; }).sort(function (a, b) { return byDate(b, a); })
+    };
+  }
+
+  // Aktuelles: zwei Bereiche "Bevorstehende Events" / "Rückblick"
+  const upcoming = document.querySelector('[data-news="upcoming"]');
+  const past = document.querySelector('[data-news="past"]');
+  if (upcoming && past) {
+    const s = split(Array.prototype.slice.call(document.querySelectorAll('.ncard[data-bis]')));
+    s.up.forEach(function (c) { upcoming.appendChild(c); });
+    s.past.forEach(function (c) { past.appendChild(c); });
+    const empty = document.querySelector('[data-news-empty]');
+    if (empty) empty.hidden = upcoming.children.length > 0;
+    upcoming.hidden = upcoming.children.length === 0;
+  }
+
+  // Startseite: nur bevorstehende Events zeigen (nächstes zuerst), vergangene ausblenden
+  const teaser = document.querySelector('[data-news="teaser"]');
+  if (teaser) {
+    const s = split(Array.prototype.slice.call(teaser.querySelectorAll('.ncard[data-bis]')));
+    s.up.forEach(function (c) { teaser.appendChild(c); });
+    s.past.forEach(function (c) { c.remove(); });
+    const empty = teaser.parentNode.querySelector('[data-news-empty]');
+    if (empty) empty.hidden = s.up.length > 0;
+    teaser.hidden = s.up.length === 0;
+  }
 })();
 
 </script>

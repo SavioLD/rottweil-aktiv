@@ -69,8 +69,9 @@
       <h2 class="heading heading--center">Aktuellste Neuigkeiten in Rottweil</h2>
     </div>
 
-    <div class="cards">
-      <article class="ncard">
+    <div class="cards" data-news="teaser">
+      <!-- Nur bevorstehende Events. data-bis = letzter Tag (JJJJ-MM-TT); danach blendet js/script.js die Kachel automatisch aus. -->
+      <article class="ncard" data-bis="2026-12-13">
         <div class="ncard__media"><img src="assets/img/weihnachtsmarkt-2026-flyer.jpg" alt="Flyer Rottweiler Weihnachtsmarkt, 3. bis 13. Dezember 2026" style="object-position:top" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
         <div class="ncard__body">
           <p class="ncard__meta">3.–13. Dezember 2026 &nbsp;•&nbsp; <b>Alle</b></p>
@@ -80,32 +81,12 @@
           <span class="ncard__rule"></span>
         </div>
       </article>
-
-      <article class="ncard">
-        <div class="ncard__media"><img src="assets/img/Rottweil-Innenstadt.jpg" alt="" onerror="this.parentNode.style.display='none'"></div>
-        <div class="ncard__body">
-          <p class="ncard__meta">16. April 2026 &nbsp;•&nbsp; <b>Alle</b></p>
-          <h3 class="ncard__title">Gesichter der Stadt – Social-Media-Marketing</h3>
-          <p class="ncard__excerpt">Rottweil bekommt ein Gesicht: Mit unserem neuen Social-Media-Konzept rücken wir die Menschen und Geschäfte der Innenstadt in den Mittelpunkt …</p>
-          <span class="ncard__rule"></span>
-        </div>
-      </article>
-
-
-
-      <article class="ncard">
-        <div class="ncard__body">
-          <p class="ncard__meta">18. Oktober 2026 &nbsp;•&nbsp; <b>Alle</b></p>
-          <h3 class="ncard__title">Verkaufsoffener Sonntag in Rottweil</h3>
-          <p class="ncard__excerpt">Am Sonntag, 18. Oktober 2026, lädt Rottweil wieder zum verkaufsoffenen Sonntag ein. Die Geschäfte in der Innenstadt haben von 12:00 bis 17:00 Uhr geöffnet.</p>
-          <button type="button" class="btn btn--gold ncard__btn" data-vos-open>Betriebe &amp; Programm ansehen</button>
-          <span class="ncard__rule"></span>
-        </div>
-      </article>
     </div>
 
+    <p class="news-empty" data-news-empty hidden>Aktuell sind keine Termine angekündigt – schau bald wieder vorbei!</p>
+
     <div class="center-cta">
-      <a href="aktuelles.html" class="btn btn--outline">Alle Beiträge</a>
+      <a href="aktuelles.html#rueckblick" class="btn btn--outline">Vergangene Events</a>
     </div>
   </div>
 </section>
